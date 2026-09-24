@@ -33,7 +33,6 @@
             position: relative;
         }
 
-        /* Oculta telas inativas */
         .tela {
             display: none;
         }
@@ -53,7 +52,6 @@
             margin-bottom: 20px;
         }
 
-        /* Botão Voltar */
         .btn-voltar {
             background: #f472b6;
             color: white;
@@ -140,8 +138,7 @@
             color: #db2777;
         }
 
-        /* --- 3. MEMÓRIAS --- */
-        /* --- 3. MEMÓRIAS (MODO SLIDESHOW) --- */
+        /* --- 3. MEMÓRIAS (SLIDESHOW) --- */
         .carrossel-container {
             position: relative;
             width: 100%;
@@ -149,7 +146,7 @@
         }
 
         .card-foto-slide {
-            display: none; /* Esconde todas as fotos */
+            display: none;
             background: white;
             padding: 12px;
             border-radius: 20px;
@@ -159,7 +156,7 @@
         }
 
         .card-foto-slide.ativo {
-            display: block; /* Mostra apenas a foto atual */
+            display: block;
         }
 
         .card-foto-slide img {
@@ -176,7 +173,6 @@
             color: #831843;
         }
 
-        /* Botões de Navegação */
         .controles-carrossel {
             display: flex;
             justify-content: space-between;
@@ -194,20 +190,12 @@
             cursor: pointer;
         }
 
-        .btn-slide:active {
-            background: #be185d;
-        }
-
         .indicador-slide {
             font-size: 0.9rem;
             font-weight: bold;
             color: #db2777;
         }
 
-        @keyframes surgir {
-            from { opacity: 0; transform: scale(0.96); }
-            to { opacity: 1; transform: scale(1); }
-        }
         /* --- 4. CALENDÁRIO DO AMOR --- */
         .contador-grid {
             display: grid;
@@ -296,6 +284,7 @@
             display: none;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
+
         /* --- 7. PERGUNTA ESPECIAL (SIM / NÃO) --- */
         .card-pedido-container {
             background: white;
@@ -365,6 +354,11 @@
             color: #831843;
             animation: surgir 0.4s ease-in-out;
         }
+
+        @keyframes surgir {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -424,6 +418,7 @@
                 <div class="card-titulo">Notas de Amor</div>
                 <p class="subtitulo">uma mensagem especial ❤️</p>
             </div>
+
             <div class="card-menu" onclick="abrirTela('tela-pedido')">
                 <div class="card-icone">💍</div>
                 <div class="card-titulo">Nosso Futuro</div>
@@ -433,53 +428,46 @@
     </div>
 
     <!-- 3. NOSSAS MEMÓRIAS -->
-   <div id="tela-memorias" class="tela">
+    <div id="tela-memorias" class="tela">
         <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
         <h2>Nossas Memórias</h2>
         <p class="subtitulo">Clique na foto para passar ❤️</p>
 
         <div class="carrossel-container">
-            <!-- Foto 1 (Começa com a classe 'ativo') -->
             <div class="card-foto-slide ativo" onclick="proximaFoto()">
-                <img src="4.jpeg" alt="Foto 4">
-                <p>que sono...</p>
+                <img src="4.jpeg" alt="Foto 1">
+                <p></p>
             </div>
-
-            <!-- Demais fotos -->
             <div class="card-foto-slide" onclick="proximaFoto()">
-                <img src="5.jpeg" alt="Foto 5">
-                <p>quase lá..</p>
+                <img src="5.jpeg" alt="Foto 2">
+                <p></p>
             </div>
-
             <div class="card-foto-slide" onclick="proximaFoto()">
                 <img src="3.jpeg" alt="Foto 3">
-                <p>melhor dia da minha vida..</p>
-            </div>
-
-            <div class="card-foto-slide" onclick="proximaFoto()">
-                <img src="7.jpeg" alt="Foto 7">
                 <p></p>
             </div>
-
             <div class="card-foto-slide" onclick="proximaFoto()">
-                <img src="1.jpeg" alt="Foto 1">
+                <img src="7.jpeg" alt="Foto 4">
                 <p></p>
             </div>
-
+            <div class="card-foto-slide" onclick="proximaFoto()">
+                <img src="1.jpeg" alt="Foto 5">
+                <p></p>
+            </div>
             <div class="card-foto-slide" onclick="proximaFoto()">
                 <img src="6.jpeg" alt="Foto 6">
                 <p></p>
             </div>
+            </div>
             <div class="card-foto-slide" onclick="proximaFoto()">
-                <img src="2.jpeg" alt="Foto 2">
+                <img src="6.jpeg" alt="Foto 7">
                 <p></p>
             </div>
         </div>
 
-        <!-- Botões Anterior / Próximo e Contador -->
         <div class="controles-carrossel">
             <button class="btn-slide" onclick="fotoAnterior()">❮ Ant</button>
-            <span class="indicador-slide" id="contador-foto">1 / 6</span>
+            <span class="indicador-slide" id="contador-foto">1 / 7</span>
             <button class="btn-slide" onclick="proximaFoto()">Próx ❯</button>
         </div>
     </div>
@@ -490,7 +478,7 @@
         <h2>Nossa Jornada</h2>
         <p class="subtitulo">há quanto tempo estamos juntos?</p>
 
-        <img src="h.jpeg" alt="Casal" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+        <img src="a.jpeg" alt="Casal" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
 
         <div class="contador-grid">
             <div class="caixa-tempo"><div class="numero-tempo" id="c-anos">0</div><div class="label-tempo">Anos</div></div>
@@ -527,15 +515,33 @@
             <p><strong>Eu te amo com tudo o que sou! ❤️</strong></p>
         </div>
     </div>
-    <br>
-    <h3>QUER CONTINUAR ESSA HISTORIA PRA SEMPRE COMIGO?</h3>
+
+    <!-- 7. PERGUNTA ESPECIAL -->
+    <div id="tela-pedido" class="tela">
+        <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
+        <h2>Pergunta Especial 💍</h2>
+        <p class="subtitulo">responda com o coração...</p>
+
+        <div class="card-pedido-container" id="area-pedido">
+            <p class="pergunta-texto" id="texto-pergunta">Quer continuar essa história de amor pra sempre comigo?</p>
+            
+            <div class="botoes-pedido" id="caixa-botoes">
+                <button class="btn-sim" onclick="aceitouPedido()">SIM! ❤️</button>
+                <button class="btn-nao" id="btn-nao" onmouseover="fugirNao()" onclick="fugirNao()" ontouchstart="fugirNao()">Não</button>
+            </div>
+        </div>
+
+        <div id="mensagem-sucesso-pedido" class="mensagem-sucesso-pedido" style="display: none;">
+            <h3>🎉 graças a Deuss! 🎉</h3>
+            <p>Eu já sabia! Te amo infinitamente e quero passar o resto da minha vida ao seu lado! ❤️✨</p>
+        </div>
+    </div>
 
 </div>
 
 <script>
     // --- 1. CONFIGURAÇÃO DA SENHA ---
-    // Digite aqui a senha desejada (ex: 1206 para 12 de junho)
-    const SENHA_CORRETA = "1209"; 
+    const SENHA_CORRETA = "1206"; 
     let pinAtual = "";
 
     function addDigito(num) {
@@ -575,9 +581,33 @@
         if(idTela === 'tela-jogo') iniciarJogo();
     }
 
-    // --- 2. CONTADOR DE TEMPO ---
-    // Defina a data do início (Ano, Mês-1, Dia, Hora, Minuto)
-    const dataInicio = new Date(2026, 8, 12, 17, 30, 0);
+    // --- CARROSSEL DE MEMÓRIAS ---
+    let fotoAtual = 0;
+
+    function mostrarFoto(index) {
+        const fotos = document.querySelectorAll('.card-foto-slide');
+        const total = fotos.length;
+
+        if (index >= total) {
+            fotoAtual = 0;
+        } else if (index < 0) {
+            fotoAtual = total - 1;
+        } else {
+            fotoAtual = index;
+        }
+
+        fotos.forEach((foto, i) => {
+            foto.classList.toggle('ativo', i === fotoAtual);
+        });
+
+        document.getElementById('contador-foto').innerText = `${fotoAtual + 1} / ${total}`;
+    }
+
+    function proximaFoto() { mostrarFoto(fotoAtual + 1); }
+    function fotoAnterior() { mostrarFoto(fotoAtual - 1); }
+
+    // --- CONTADOR DE TEMPO ---
+    const dataInicio = new Date(2024, 5, 12, 19, 30, 0);
 
     function atualizarContador() {
         const agora = new Date();
@@ -602,8 +632,8 @@
     setInterval(atualizarContador, 1000);
     atualizarContador();
 
-    // --- 3. JOGO DA MEMÓRIA ---
-    const fotosJogo = ['3.jpeg', '6.jpeg', '2.jpeg', '1.jpeg', '5.jpeg', '7.jpeg'];
+    // --- JOGO DA MEMÓRIA ---
+    const fotosJogo = ['a.jpeg', 'b.jpeg', 'c.jpeg', 'd.jpeg', 'e.jpeg', 'f.jpeg'];
     let cartasViradas = [];
 
     function iniciarJogo() {
@@ -611,7 +641,6 @@
         tabuleiro.innerHTML = '';
         cartasViradas = [];
 
-        // Duplica as fotos e embaralha
         let deck = [...fotosJogo, ...fotosJogo].sort(() => Math.random() - 0.5);
 
         deck.forEach(foto => {
@@ -642,47 +671,17 @@
         }
     }
 
-    // --- 4. ABRIR CARTA ---
+    // --- ABRIR CARTA ---
     function abrirCarta() {
         document.getElementById('envelope-btn').style.display = 'none';
         document.getElementById('carta-conteudo').style.display = 'block';
     }
-    let fotoAtual = 0;
 
-    function mostrarFoto(index) {
-        const fotos = document.querySelectorAll('.card-foto-slide');
-        const total = fotos.length;
-
-        if (index >= total) {
-            fotoAtual = 0; // Volta para a primeira foto se passar da última
-        } else if (index < 0) {
-            fotoAtual = total - 1; // Vai para a última se voltar da primeira
-        } else {
-            fotoAtual = index;
-        }
-
-        // Esconde todas e ativa apenas a selecionada
-        fotos.forEach((foto, i) => {
-            foto.classList.toggle('ativo', i === fotoAtual);
-        });
-
-        // Atualiza o indicador (ex: 1 / 6)
-        document.getElementById('contador-foto').innerText = `${fotoAtual + 1} / ${total}`;
-    }
-
-    function proximaFoto() {
-        mostrarFoto(fotoAtual + 1);
-    }
-
-    function fotoAnterior() {
-        mostrarFoto(fotoAtual - 1);
-    }
-    // --- LÓGICA DO BOTÃO "NÃO" QUE FOGE ---
+    // --- BOTÃO "NÃO" QUE FOGE ---
     function fugirNao() {
         const btnNao = document.getElementById('btn-nao');
         const container = document.getElementById('area-pedido');
 
-        // Calcula os limites para o botão não sair da caixa
         const maxX = container.clientWidth - btnNao.offsetWidth - 20;
         const maxY = container.clientHeight - btnNao.offsetHeight - 20;
 
