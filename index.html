@@ -296,6 +296,75 @@
             display: none;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
+        /* --- 7. PERGUNTA ESPECIAL (SIM / NÃO) --- */
+        .card-pedido-container {
+            background: white;
+            padding: 25px 15px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            min-height: 230px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .pergunta-texto {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #831843;
+            margin-bottom: 25px;
+        }
+
+        .botoes-pedido {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .btn-sim {
+            background: #22c55e;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn-sim:active {
+            transform: scale(0.95);
+        }
+
+        .btn-nao {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+            transition: top 0.15s ease, left 0.15s ease;
+        }
+
+        .mensagem-sucesso-pedido {
+            background: #fbcfe8;
+            border: 2px solid #db2777;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 15px;
+            color: #831843;
+            animation: surgir 0.4s ease-in-out;
+        }
     </style>
 </head>
 <body>
@@ -354,6 +423,11 @@
                 <div class="card-icone">💌</div>
                 <div class="card-titulo">Notas de Amor</div>
                 <p class="subtitulo">uma mensagem especial ❤️</p>
+            </div>
+            <div class="card-menu" onclick="abrirTela('tela-pedido')">
+                <div class="card-icone">💍</div>
+                <div class="card-titulo">Nosso Futuro</div>
+                <p class="subtitulo">uma pergunta importante ❤️</p>
             </div>
         </div>
     </div>
@@ -602,6 +676,28 @@
 
     function fotoAnterior() {
         mostrarFoto(fotoAtual - 1);
+    }
+    // --- LÓGICA DO BOTÃO "NÃO" QUE FOGE ---
+    function fugirNao() {
+        const btnNao = document.getElementById('btn-nao');
+        const container = document.getElementById('area-pedido');
+
+        // Calcula os limites para o botão não sair da caixa
+        const maxX = container.clientWidth - btnNao.offsetWidth - 20;
+        const maxY = container.clientHeight - btnNao.offsetHeight - 20;
+
+        const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+        const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+
+        btnNao.style.position = 'absolute';
+        btnNao.style.left = `${randomX}px`;
+        btnNao.style.top = `${randomY}px`;
+    }
+
+    function aceitouPedido() {
+        document.getElementById('caixa-botoes').style.display = 'none';
+        document.getElementById('texto-pergunta').innerText = 'Você disse SIM! ❤️';
+        document.getElementById('mensagem-sucesso-pedido').style.display = 'block';
     }
 </script>
 
