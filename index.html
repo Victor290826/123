@@ -141,27 +141,73 @@
         }
 
         /* --- 3. MEMÓRIAS --- */
-        .galeria-memorias {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-height: 450px;
-            overflow-y: auto;
-        }
-
-        .card-foto {
-            background: white;
-            padding: 10px;
-            border-radius: 15px;
-        }
-
-        .card-foto img {
+        /* --- 3. MEMÓRIAS (MODO SLIDESHOW) --- */
+        .carrossel-container {
+            position: relative;
             width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 10px;
+            margin-top: 10px;
         }
 
+        .card-foto-slide {
+            display: none; /* Esconde todas as fotos */
+            background: white;
+            padding: 12px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+            animation: surgir 0.3s ease-in-out;
+        }
+
+        .card-foto-slide.ativo {
+            display: block; /* Mostra apenas a foto atual */
+        }
+
+        .card-foto-slide img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .card-foto-slide p {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #831843;
+        }
+
+        /* Botões de Navegação */
+        .controles-carrossel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .btn-slide {
+            background: #db2777;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-slide:active {
+            background: #be185d;
+        }
+
+        .indicador-slide {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #db2777;
+        }
+
+        @keyframes surgir {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
         /* --- 4. CALENDÁRIO DO AMOR --- */
         .contador-grid {
             display: grid;
@@ -313,19 +359,54 @@
     </div>
 
     <!-- 3. NOSSAS MEMÓRIAS -->
-    <div id="tela-memorias" class="tela">
+   <div id="tela-memorias" class="tela">
         <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
         <h2>Nossas Memórias</h2>
-        <p class="subtitulo">Nossos doces momentos</p>
+        <p class="subtitulo">Clique na foto para passar ❤️</p>
 
-        <div class="galeria-memorias">
-            <div class="card-foto"><img src="4.jpeg" alt="Foto 4"><p>melhor dia da minha vida</p></div>
-            <div class="card-foto"><img src="5.jpeg" alt="Foto 5"><p></p></div>
-            <div class="card-foto"><img src="3.jpeg" alt="Foto 3"><p></p></div>
-            <div class="card-foto"><img src="7.jpeg" alt="Foto 7"><p></p></div>
-            <div class="card-foto"><img src="1.jpeg" alt="Foto 1"><p></p></div>
-            <div class="card-foto"><img src="6.jpeg" alt="Foto 6"><p></p></div>
-            <div class="card-foto"><img src="2.jpeg" alt="Foto 2"><p></p></div>
+        <div class="carrossel-container">
+            <!-- Foto 1 (Começa com a classe 'ativo') -->
+            <div class="card-foto-slide ativo" onclick="proximaFoto()">
+                <img src="a.jpeg" alt="Foto 4">
+                <p>que sono...</p>
+            </div>
+
+            <!-- Demais fotos -->
+            <div class="card-foto-slide" onclick="proximaFoto()">
+                <img src="b.jpeg" alt="Foto 5">
+                <p>quase lá..</p>
+            </div>
+
+            <div class="card-foto-slide" onclick="proximaFoto()">
+                <img src="c.jpeg" alt="Foto 3">
+                <p>melhor dia da minha vida..</p>
+            </div>
+
+            <div class="card-foto-slide" onclick="proximaFoto()">
+                <img src="d.jpeg" alt="Foto 7">
+                <p></p>
+            </div>
+
+            <div class="card-foto-slide" onclick="proximaFoto()">
+                <img src="e.jpeg" alt="Foto 1">
+                <p></p>
+            </div>
+
+            <div class="card-foto-slide" onclick="proximaFoto()">
+                <img src="f.jpeg" alt="Foto 6">
+                <p></p>
+            </div>
+            <div class="card-foto-slide" onclick="proximaFoto()">
+                <img src="f.jpeg" alt="Foto 2">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Botões Anterior / Próximo e Contador -->
+        <div class="controles-carrossel">
+            <button class="btn-slide" onclick="fotoAnterior()">❮ Ant</button>
+            <span class="indicador-slide" id="contador-foto">1 / 6</span>
+            <button class="btn-slide" onclick="proximaFoto()">Próx ❯</button>
         </div>
     </div>
 
@@ -491,6 +572,36 @@
     function abrirCarta() {
         document.getElementById('envelope-btn').style.display = 'none';
         document.getElementById('carta-conteudo').style.display = 'block';
+    }
+    let fotoAtual = 0;
+
+    function mostrarFoto(index) {
+        const fotos = document.querySelectorAll('.card-foto-slide');
+        const total = fotos.length;
+
+        if (index >= total) {
+            fotoAtual = 0; // Volta para a primeira foto se passar da última
+        } else if (index < 0) {
+            fotoAtual = total - 1; // Vai para a última se voltar da primeira
+        } else {
+            fotoAtual = index;
+        }
+
+        // Esconde todas e ativa apenas a selecionada
+        fotos.forEach((foto, i) => {
+            foto.classList.toggle('ativo', i === fotoAtual);
+        });
+
+        // Atualiza o indicador (ex: 1 / 6)
+        document.getElementById('contador-foto').innerText = `${fotoAtual + 1} / ${total}`;
+    }
+
+    function proximaFoto() {
+        mostrarFoto(fotoAtual + 1);
+    }
+
+    function fotoAnterior() {
+        mostrarFoto(fotoAtual - 1);
     }
 </script>
 
