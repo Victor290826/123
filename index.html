@@ -31,37 +31,56 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
         .tela {
-            display: none;
+            display: none !important;
         }
 
         .tela.ativa {
-            display: block;
+            display: block !important;
         }
 
-        h1, h2 {
+        /* --- CABEÇALHO PADRÃO DAS TELAS --- */
+        .header-tela {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            min-height: 35px;
+        }
+
+        .btn-voltar {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #f472b6;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .btn-voltar:active {
+            background: #db2777;
+        }
+
+        .header-tela h2 {
             color: #db2777;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
+            margin: 0;
         }
 
         p.subtitulo {
             font-size: 0.9rem;
             color: #9d174d;
             margin-bottom: 20px;
-        }
-
-        .btn-voltar {
-            background: #f472b6;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 15px;
-            cursor: pointer;
-            margin-bottom: 15px;
-            font-weight: bold;
-            float: left;
         }
 
         /* --- 1. TELA DE SENHA --- */
@@ -111,7 +130,6 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            clear: both;
         }
 
         .card-menu {
@@ -144,7 +162,6 @@
             position: relative;
             width: 100%;
             margin-top: 10px;
-            clear: both;
         }
 
         .card-foto-slide {
@@ -183,7 +200,6 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin: 15px 0;
-            clear: both;
         }
 
         .caixa-tempo {
@@ -210,7 +226,6 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
             margin-top: 15px;
-            clear: both;
         }
 
         .carta-jogo {
@@ -247,7 +262,6 @@
             cursor: pointer;
             margin: 30px 0;
             animation: pulse 1.5s infinite;
-            clear: both;
         }
 
         @keyframes pulse {
@@ -275,14 +289,13 @@
             padding: 25px 15px;
             border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            min-height: 230px;
+            min-height: 200px;
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            clear: both;
         }
 
         .pergunta-texto {
@@ -352,7 +365,7 @@
 
     <!-- 1. TELA DE SENHA -->
     <div id="tela-login" class="tela ativa">
-        <h2>Minha Senha 🎀</h2>
+        <h2 style="color: #db2777; margin-bottom: 10px;">Minha Senha 🎀</h2>
         <p class="subtitulo">uma data especial para nós</p>
         <div class="pin-display" id="pin-display">🔒 · · · ·</div>
         
@@ -376,85 +389,88 @@
 
     <!-- 2. MENU PRINCIPAL -->
     <div id="tela-menu" class="tela">
-        <h2>Menu do Nosso Amor</h2>
+        <h2 style="color: #db2777; margin-bottom: 10px;">Menu do Nosso Amor</h2>
         <p class="subtitulo">♡ juntos para sempre ♡</p>
 
         <div class="menu-grid">
             <div class="card-menu" onclick="abrirTela('tela-memorias')">
                 <div class="card-icone">📸</div>
                 <div class="card-titulo">Nossas Memórias</div>
-                <p class="subtitulo">momentos preciosos com você ❤️</p>
+                <p class="subtitulo" style="margin-bottom:0;">momentos preciosos com você ❤️</p>
             </div>
 
             <div class="card-menu" onclick="abrirTela('tela-calendario')">
                 <div class="card-icone">🗓️</div>
                 <div class="card-titulo">Calendário do Amor</div>
-                <p class="subtitulo">contador de tempo do nosso amor ❤️</p>
+                <p class="subtitulo" style="margin-bottom:0;">contador de tempo do nosso amor ❤️</p>
             </div>
 
             <div class="card-menu" onclick="abrirTela('tela-jogo')">
                 <div class="card-icone">🧩</div>
                 <div class="card-titulo">Jogo da Memória</div>
-                <p class="subtitulo">combine nossas fotos ❤️</p>
+                <p class="subtitulo" style="margin-bottom:0;">combine nossas fotos ❤️</p>
             </div>
 
             <div class="card-menu" onclick="abrirTela('tela-carta')">
                 <div class="card-icone">💌</div>
                 <div class="card-titulo">Notas de Amor</div>
-                <p class="subtitulo">uma mensagem especial ❤️</p>
+                <p class="subtitulo" style="margin-bottom:0;">uma mensagem especial ❤️</p>
             </div>
 
             <div class="card-menu" onclick="abrirTela('tela-pedido')">
                 <div class="card-icone">💍</div>
                 <div class="card-titulo">Nosso Futuro</div>
-                <p class="subtitulo">uma pergunta importante ❤️</p>
+                <p class="subtitulo" style="margin-bottom:0;">uma pergunta importante ❤️</p>
             </div>
         </div>
     </div>
 
     <!-- 3. NOSSAS MEMÓRIAS -->
     <div id="tela-memorias" class="tela">
-        <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
-        <h2>Nossas Memórias</h2>
+        <div class="header-tela">
+            <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
+            <h2>Nossas Memórias</h2>
+        </div>
         <p class="subtitulo">Toque na foto para passar ❤️</p>
 
         <div class="carrossel-container">
             <div class="card-foto-slide ativo" onclick="proximaFoto()">
                 <img src="4.jpeg" alt="Foto 1">
-                <p></p>
+                <p>que sono...</p>
             </div>
             <div class="card-foto-slide" onclick="proximaFoto()">
                 <img src="5.jpeg" alt="Foto 2">
-                <p></p>
+                <p>quase lá..</p>
             </div>
             <div class="card-foto-slide" onclick="proximaFoto()">
                 <img src="3.jpeg" alt="Foto 3">
-                <p></p>
+                <p>pegando no sono..</p>
             </div>
             <div class="card-foto-slide" onclick="proximaFoto()">
                 <img src="7.jpeg" alt="Foto 4">
-                <p></p>
+                <p>foi...</p>
             </div>
             <div class="card-foto-slide" onclick="proximaFoto()">
                 <img src="1.jpeg" alt="Foto 5">
-                <p></p>
+                <p>dormiu...</p>
             </div>
             <div class="card-foto-slide" onclick="proximaFoto()">
                 <img src="6.jpeg" alt="Foto 6">
-                <p></p>
-            </div>
+                <p>em outro mundo...</p>
             </div>
             <div class="card-foto-slide" onclick="proximaFoto()">
-                <img src="2.jpeg" alt="Foto 6">
-                <p></p>
+                <img src="2.jpeg" alt="Foto 7">
+                <p>em outro mundo...</p>
             </div>
         </div>
     </div>
 
     <!-- 4. CALENDÁRIO DO AMOR -->
     <div id="tela-calendario" class="tela">
-        <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
-        <h2>Nossa Jornada</h2>
+        <div class="header-tela">
+            <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
+            <h2>Nossa Jornada</h2>
+        </div>
         <p class="subtitulo">há quanto tempo estamos juntos?</p>
 
         <img src="h.jpeg" alt="Casal" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
@@ -473,8 +489,10 @@
 
     <!-- 5. JOGO DA MEMÓRIA -->
     <div id="tela-jogo" class="tela">
-        <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
-        <h2>Jogo da Memória</h2>
+        <div class="header-tela">
+            <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
+            <h2>Jogo da Memória</h2>
+        </div>
         <p class="subtitulo">tente acertar todas as fotos</p>
 
         <div class="grid-jogo" id="tabuleiro-jogo"></div>
@@ -482,8 +500,10 @@
 
     <!-- 6. CARTA DE AMOR -->
     <div id="tela-carta" class="tela">
-        <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
-        <h2>Declaração</h2>
+        <div class="header-tela">
+            <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
+            <h2>Declaração</h2>
+        </div>
         
         <div class="envelope" id="envelope-btn" onclick="abrirCarta()">💌</div>
 
@@ -497,8 +517,10 @@
 
     <!-- 7. PERGUNTA ESPECIAL -->
     <div id="tela-pedido" class="tela">
-        <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
-        <h2>Pergunta Especial 💍</h2>
+        <div class="header-tela">
+            <button class="btn-voltar" onclick="abrirTela('tela-menu')">← Voltar</button>
+            <h2>Pergunta Especial 💍</h2>
+        </div>
         <p class="subtitulo">responda com o coração...</p>
 
         <div class="card-pedido-container" id="area-pedido">
@@ -520,7 +542,7 @@
 
 <script>
     // --- 1. CONFIGURAÇÃO DA SENHA ---
-    const SENHA_CORRETA = "1209"; 
+    const SENHA_CORRETA = "1206"; 
     let pinAtual = "";
 
     function addDigito(num) {
@@ -609,7 +631,7 @@
     atualizarContador();
 
     // --- JOGO DA MEMÓRIA ---
-    const fotosJogo = ['a.jpeg', 'b.jpeg', 'c.jpeg', 'd.jpeg', 'e.jpeg', 'f.jpeg'];
+    const fotosJogo = ['1.jpeg', '2.jpeg', '3.jpeg', '5.jpeg', '6.jpeg', '7.jpeg'];
     let cartasViradas = [];
 
     function iniciarJogo() {
